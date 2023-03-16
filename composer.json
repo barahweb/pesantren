@@ -1,0 +1,6 @@
+{
+    "require": {
+        "rakit/validation": "^1.4",
+        "midtrans/midtrans-php": "^2.5"
+    }
+}
