@@ -153,13 +153,13 @@ if (isset($_POST['submit'])) {
 
                                 <div class="form-group">
                                     <label for="emailwali">Email Wali Santri : </label>
-                                    <input type="email" class="form-control" name="emailwali" id="emailwali" placeholder="Nama Wali Santri " />
+                                    <input type="email" class="form-control" name="emailwali" id="emailwali" placeholder="Email Wali Santri " />
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="nohp">No Hp Wali Santri : </label>
-                                    <input type="text" class="form-control" name="nohp" id="nohp" placeholder="Nama Wali Santri " />
+                                    <input type="text" class="form-control" name="nohp" id="nohp" placeholder="No Hp Wali Santri " />
                                 </div>
                             </div>
                             <div class="col-lg-6">

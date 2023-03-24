@@ -72,9 +72,9 @@ if (isset($_POST['email'])) {
                             <!-- <img src="assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle"> -->
                         </div>
 
-                        <div class="card card-primary">
+                        <div class="card card-info">
                             <div class="card-header">
-                                <h4>Login Pesantren</h4>
+                                <h4 style="color: #0093dd">Login Pesantren</h4>
                             </div>
 
                             <div class="card-body">
@@ -111,7 +111,7 @@ if (isset($_POST['email'])) {
 
 
                                     <div class="form-group">
-                                        <button type="submit" name="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                        <button type="submit" name="submit" class="btn btn-info btn-lg btn-block" tabindex="4">
                                             Login
                                         </button>
                                     </div>
@@ -122,7 +122,7 @@ if (isset($_POST['email'])) {
                         </div>
 
                         <div class="simple-footer">
-                            Copyright &copy; Pesantren 2021
+                            Copyright &copy; <?= date('Y'); ?>
                         </div>
                     </div>
                 </div>

@@ -33,7 +33,6 @@
 
 <?php $url = $_SERVER['REQUEST_URI']; ?>
 
-<?=$url == '/index.php' ? 'oke' : $url; ?>
 <body>
     <div class="hero_area">
         <!-- header section strats -->
@@ -56,7 +55,7 @@
                                 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item  <?=$url != '/index.php' && $url != '/' ? 'active' : ''; ?>">
-                                <a class="nav-link" href="index.php?page=daftar"> Daftar Santri </a>
+                                <a class="nav-link" href="index.php?page=daftar"> Daftar Wali Santri </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" target="_blank" href="admin/login.php"> Login Wali Santri </a>

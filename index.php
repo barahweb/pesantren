@@ -25,11 +25,11 @@ if (isset($_GET["page"])) {
         <!-- slider section -->
         <section class=" slider_section position-relative">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
+                <!-- <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
+                </ol> -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="container">
@@ -185,7 +185,7 @@ if (isset($_GET["page"])) {
                         ILMU YANG DIPELAJARI
                     </h3>
                     <p>
-                        It is a long established fact that a reader will be distracted
+                        <!-- It is a long established fact that a reader will be distracted -->
                     </p>
                 </div>
                 <div class="course_container">
