@@ -12,12 +12,12 @@ if (isset($_POST["submit"])) {
 
     $link   = "laporan/cetak/laporanpendaftaran.php?awal={$awal}&akhir={$akhir}";
 
-    $query  = "SELECT * FROM santri INNER JOIN pendaftaran USING(id_santri) WHERE pendaftaran.tanggal_daftar BETWEEN '{$awal}' AND '{$akhir}'";
+    $query  = "SELECT * FROM santri INNER JOIN pendaftaran USING(id_santri) WHERE pendaftaran.status = '2' and pendaftaran.tanggal_daftar BETWEEN '{$awal}' AND '{$akhir}'";
 
     $data   = ambilData($query);
 } else {
     $link = 'laporan/cetak/laporanpendaftaran.php';
-    $data = ambilData("SELECT * FROM santri INNER JOIN pendaftaran USING(id_santri)");
+    $data = ambilData("SELECT * FROM santri INNER JOIN pendaftaran USING(id_santri) WHERE pendaftaran.status = '2'");
 }
 
 
@@ -28,10 +28,10 @@ if (isset($_POST["submit"])) {
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Laporan Pendaftaran</h1>
+            <h1>Laporan Santri Ditolak</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="index.php">Dashboard</a></div>
-                <div class="breadcrumb-item">Laporan Pendaftaran</div>
+                <div class="breadcrumb-item">Laporan Santri Ditolak</div>
             </div>
         </div>
 
@@ -89,7 +89,6 @@ if (isset($_POST["submit"])) {
                                             <th class="text-center">Tanggal Lahir</th>
                                             <th class="text-center">Tempat Lahir</th>
                                             <th class="text-center">No Hp</th>
-                                            <th class="text-center">Status</th>
                                             <th class="text-center">Tanggal Pendaftaran</th>
                                         </tr>
                                         </tr>
@@ -107,9 +106,6 @@ if (isset($_POST["submit"])) {
                                                 <td class="text-center"><?= $d['tanggal_lahir'] ?></td>
                                                 <td class="text-center"><?= $d['tempat_lahir'] ?></td>
                                                 <td class="text-center"><?= $d['no_hp'] ?></td>
-                                                <td class="text-center">
-                                                    <?= $status ?>
-                                                </td>
                                                 <td class="text-center"><?= $d['tanggal_daftar'] ?></td>
 
 

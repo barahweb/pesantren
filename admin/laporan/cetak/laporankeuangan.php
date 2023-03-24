@@ -23,7 +23,7 @@ $pengurus = ambilData("SELECT * FROM pengurus WHERE id_pengurus = {$_SESSION['us
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cetak Laporan Keuangan</title>
+    <title>Cetak Laporan Pembayaran</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
@@ -42,7 +42,7 @@ $pengurus = ambilData("SELECT * FROM pengurus WHERE id_pengurus = {$_SESSION['us
 
         <hr style="border:1.5px solid black;">
 
-        <h4 class="text-center mt-5" style="text-decoration:underline;">LAPORAN KEUANGAN</h4>
+        <h4 class="text-center mt-5" style="text-decoration:underline;">LAPORAN PEMBAYARAN</h4>
         <?php if (isset($_GET['awal']) && isset($_GET['akhir'])) { ?>
             <h6 class="text-center"><?= $_GET['awal'] . " / " . $_GET['akhir'] ?></h6>
         <?php } ?>

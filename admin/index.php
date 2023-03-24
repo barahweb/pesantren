@@ -35,6 +35,9 @@ if (isset($_GET['page'])) {
             case "santridaftar":
                 require_once "santridaftar/index.php";
                 break;
+            case "santriditerima":
+                require_once "santriditerima/index.php";
+                break;
             case "walisantripengurus":
                 require_once "walisantripengurus/index.php";
                 break;

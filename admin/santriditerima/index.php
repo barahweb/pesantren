@@ -3,10 +3,69 @@
 
 
 
-$data = ambilData("SELECT * FROM santri INNER JOIN pendaftaran USING(id_santri) INNER JOIN berkas USING(id_santri) WHERE status = 1 ORDER BY pendaftaran.status ASC");
-$link = 'laporan/cetak/laporansantri.php';
+$data = ambilData("SELECT santri.*,berkas.*, pendaftaran.*, wali_santri.nama as nama_wali FROM santri INNER JOIN pendaftaran USING(id_santri) INNER JOIN berkas USING(id_santri) INNER JOIN wali_santri USING(id_wali_santri) WHERE status = 1");
 
 
+if (isset($_POST['submit'])) {
+    if (editSantri($_POST) > 0) {
+        echo "
+        <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Data berhasil dirubah',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    document.location.href = 'index.php?page=santridaftar'
+                })
+            </script>";
+    } else {
+        echo "
+        <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Data gagal dirubah',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    document.location.href = 'index.php?page=santridaftar'
+                })
+            </script>";
+    }
+}
+
+
+if (isset($_POST['submitproses'])) {
+    if (prosesSantri($_POST) > 0) {
+        echo "
+        <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Data berhasil dirubah',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    document.location.href = 'index.php?page=santridaftar'
+                })
+            </script>";
+    } else {
+        echo "
+        <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Data gagal dirubah',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    document.location.href = 'index.php?page=santridaftar'
+                })
+            </script>";
+    }
+}
 
 ?>
 
@@ -15,10 +74,10 @@ $link = 'laporan/cetak/laporansantri.php';
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Laporan Santri Diterima</h1>
+            <h1>Data Santri Diterima</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="index.php">Dashboard</a></div>
-                <div class="breadcrumb-item">Laporan Santri Diterima</div>
+                <div class="breadcrumb-item">Data Santri Diterima</div>
             </div>
         </div>
 
@@ -28,47 +87,50 @@ $link = 'laporan/cetak/laporansantri.php';
                     <div class="card">
 
                         <div class="card-body">
-                            <a href="<?= $link ?>" target="_blank">
-                                <button class="btn btn-primary float-right"><i class="fa fa-print"></i></button>
-                            </a>
-                            <br>
-                            <br>
-                            <br>
                             <div class="table-responsive">
                                 <table id="mytable" class="table table-bordered table-md">
                                     <thead>
                                         <tr>
                                         <tr>
                                             <th class="text-center">Nama Santri</th>
+                                            <th class="text-center">Nama Wali Santri</th>
                                             <th class="text-center">Jenis Kelamin</th>
                                             <th class="text-center">Alamat</th>
                                             <th class="text-center">Tanggal Lahir</th>
                                             <th class="text-center">Tempat Lahir</th>
                                             <th class="text-center">No Hp</th>
-                                            <!-- <th class="text-center">Status</th> -->
-
+                                            <!-- <th class="text-center">Berkas</th> -->
+                                            <!-- <th class="text-center">Status</th>
+                                            <th class="text-center">Action</th> -->
                                         </tr>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($data as $d) :
-                                            $status = 'Belum Diproses';
-                                            if ($d['status'] == 1) $status = 'Diterima';
-                                            if ($d['status'] == 2) $status = 'Tidak Diterima';
+
                                             ?>
                                             <tr>
                                                 <td class="text-center"><?= $d['nama'] ?></td>
+                                                <td class="text-center"><?= $d['nama_wali'] ?></td>
                                                 <td class="text-center"><?= $d['jk'] ?></td>
                                                 <td class="text-center"><?= $d['alamat'] ?></td>
                                                 <td class="text-center"><?= $d['tanggal_lahir'] ?></td>
                                                 <td class="text-center"><?= $d['tempat_lahir'] ?></td>
                                                 <td class="text-center"><?= $d['no_hp'] ?></td>
                                                 <!-- <td class="text-center">
-                                                    <?= $status ?>
+                                                    <a href="assets/berkas/<?= $d['nama_berkas'] ?>">
+                                                        <button class="btn btn-warning">Berkas</button>
+                                                    </a>
                                                 </td> -->
+                                                <!-- <td class="text-center">
+                                                    <button class="btn btn-primary" data-id="<?= $d['id_santri'] ?>" onclick="prosesSantri($(this).data('id'))" data-toggle="modal" data-target="#modalProses">Proses</button>
+                                                </td>
+                                                <td class="text-center">
+                                                    <button class="btn btn-success" data-id="<?= $d['id_santri'] ?>" onclick="editSantri($(this).data('id'))" data-toggle="modal" data-target="#exampleModalCenter">
+                                                        <i class="fa fa-pen"></i>
+                                                    </button>
 
-
-
+                                                </td> -->
 
                                             </tr>
                                         <?php endforeach; ?>

@@ -579,8 +579,8 @@ function hakAkses($role, $page)
 {
     $akses = [
         [],
-        ['tambahpengurus', 'pengurus', 'tanggalpendaftaran', 'santridaftar', 'pembayaran', 'laporankeuangan', 'walisantripengurus', 'laporanpendaftaran', 'laporansantri'],
-        ['walisantri', 'pembayaran', 'tambahsantri', 'profil']
+        ['tambahpengurus', 'pengurus', 'tanggalpendaftaran', 'santridaftar', 'pembayaran', 'laporankeuangan', 'walisantripengurus', 'laporanpendaftaran', 'laporansantri', 'santriditerima'],
+        ['walisantri', 'pembayaran', 'tambahsantri', 'profil', 'santriditerima']
     ];
 
 

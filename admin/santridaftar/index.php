@@ -74,10 +74,10 @@ if (isset($_POST['submitproses'])) {
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Santri</h1>
+            <h1>Data Pendaftaran Santri</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="index.php">Dashboard</a></div>
-                <div class="breadcrumb-item">Santri</div>
+                <div class="breadcrumb-item">Data Pendaftaran Santri</div>
             </div>
         </div>
 
