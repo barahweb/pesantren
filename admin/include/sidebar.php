@@ -52,7 +52,7 @@
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>Menu</span></a>
                     <ul class="dropdown-menu">
-                    <li class="santridaftar"><a class="nav-link" href="index.php?page=santridaftar">Pendaftaran Santri</a></li>
+                        <li class="walisantri"><a class="nav-link" href="index.php?page=walisantri">Pendaftaran Santri</a></li>
                         <li class="santriditerima"><a class="nav-link" href="index.php?page=santriditerima">Data Santri Diterima</a></li>
                         <li class="pembayaran"><a class="nav-link" href="index.php?page=pembayaran">Pembayaran</a></li>
                     </ul>

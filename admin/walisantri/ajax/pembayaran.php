@@ -4,7 +4,8 @@ require('../../../vendor/autoload.php');
 
 
 // Set your Merchant Server Key
-\Midtrans\Config::$serverKey = 'SB-Mid-server-1KSU2ePL_QSJU1bzB-g5-xKx';
+\Midtrans\Config::$serverKey = 'SB-Mid-server-C3lYocT94AWARbz1IMDL0JdX';
+// \Midtrans\Config::$serverKey = 'SB-Mid-server-1KSU2ePL_QSJU1bzB-g5-xKx';
 // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
 \Midtrans\Config::$isProduction = false;
 // Set sanitization on (default)
