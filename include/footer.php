@@ -3,8 +3,6 @@
     <div class="container">
         <div class="row">
 
-
-
             <div class="col-md-5">
                 <div class="info_news">
                     <h5>
@@ -31,7 +29,7 @@
 <!-- footer section -->
 <footer class="container-fluid footer_section">
     <p>
-        &copy; 2021 All Rights Reserved By
+        &copy; <?=date("Y"); ?> All Rights Reserved By
 
     </p>
 
