@@ -33,6 +33,7 @@ if (isset($_POST['email'])) {
             $_SESSION['login'] = true;
             $_SESSION['role'] = 2;
             $_SESSION['user'] = $cek['id_wali_santri'];
+            // $_SESSION['']
             echo "<script>document.location.href='index.php'</script>";
         }
     }

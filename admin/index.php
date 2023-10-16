@@ -1,3 +1,36 @@
+<style>
+    .colored-toast.swal2-icon-success {
+        background-color: #a5dc86 !important;
+    }
+
+    .colored-toast.swal2-icon-error {
+        background-color: #f27474 !important;
+    }
+
+    .colored-toast.swal2-icon-warning {
+        background-color: #f8bb86 !important;
+    }
+
+    .colored-toast.swal2-icon-info {
+        background-color: #3fc3ee !important;
+    }
+
+    .colored-toast.swal2-icon-question {
+        background-color: #87adbd !important;
+    }
+
+    .colored-toast .swal2-title {
+        color: white;
+    }
+
+    .colored-toast .swal2-close {
+        color: white;
+    }
+
+    .colored-toast .swal2-html-container {
+        color: white;
+    }
+</style>
 <?php
 require('../vendor/autoload.php');
 
@@ -11,6 +44,7 @@ $validator  = new Validator;
 require_once "include/function.php";
 require_once "include/header.php";
 require_once "include/sidebar.php";
+
 
 
 if (isset($_GET['page'])) {
@@ -74,6 +108,40 @@ if (isset($_GET['page'])) {
 
 
     ?>
+<?php 
+$hasAlertOpened = false;
+$idwalisantri = $_SESSION["user"] ?? NULL;
+if ($hasAlertOpened == false) {
+    if ($idwalisantri) {
+        
+        $data = ambilData("SELECT santri.nama FROM pendaftaran join santri on santri.id_santri = pendaftaran.id_santri join wali_santri on wali_santri.id_wali_santri = santri.id_wali_santri where pendaftaran.status = 1 and wali_santri.id_wali_santri = {$idwalisantri} LIMIT 3") ;
+        if ($data) {
+            echo "<script>
+            Swal.fire({
+                toast: true,
+                position: 'top-right',
+                iconColor: 'white',
+                customClass: {
+                    popup: 'colored-toast'
+                },
+                icon: 'success',
+                title: 'Santri " . $data[0]['nama'] .  " dinyatakan diterima',
+                timer: 3000,
+                timerProgressBar: true,
+                showConfirmButton: false,
+            })
+            </script>";
+    
+            $hasAlertOpened = true;
+    
+        }
+    }
+
+}
+
+
+?>
+    
         <!-- Main Content -->
         <div class="main-content">
 
@@ -212,3 +280,4 @@ if (isset($_GET['page'])) {
     }
     require_once "include/footer.php";
     ?>
+    

@@ -37,7 +37,7 @@ if (isset($_GET["page"])) {
                                 <div class="col">
                                     <div class="detail-box">
                                         <div>
-                                            <h1>
+                                            <h1 style="color: darkolivegreen;">
                                                 P E S A N T R E N
                                             </h1>
 
@@ -146,10 +146,10 @@ if (isset($_GET["page"])) {
                     <div class="col-md-6">
                         <div class="img_container">
                             <div class="img-box b1">
-                                <img src="assets/bg1.jpg" alt="" />
+                                <img src="assets/DSC08853.jpg" alt="" />
                             </div>
                             <div class="img-box b2">
-                                <img src="assets/images/a-2.jpg" alt="" />
+                                <img src="assets/DSC08946.jpg" alt="" />
                             </div>
                         </div>
                     </div>
