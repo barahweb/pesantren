@@ -284,12 +284,7 @@ if (isset($_POST['submitproses'])) {
             let proses = $(this).val()
             $(".masuk").empty()
             if (proses == 1) {
-                let el = $(`<div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label for="nama">Kelas : </label>
-                                        <input type="text" class="form-control" name="kelas" id="kelas" placeholder="Masukan Nama Kelas">
-                                    </div>
-                                </div>
+                let el = $(`
 
                                 <div class="col-lg-12">
                                     <div class="form-group">

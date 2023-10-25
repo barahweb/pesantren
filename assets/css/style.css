@@ -90,7 +90,7 @@ body {
 
 .custom_nav-container .navbar-nav .nav-item .nav-link {
   padding: 45px 15px 15px;
-  color: #000000;
+  color: #ffffff;
   text-align: center;
   position: relative;
   text-transform: uppercase;
@@ -98,7 +98,7 @@ body {
 
 .custom_nav-container .navbar-nav .nav-item:hover .nav-link,
 .custom_nav-container .navbar-nav .nav-item.active .nav-link {
-  background-color: #133e3f;
+  background-color: #113c3d;
 }
 
 .custom_nav-container .form-inline {
