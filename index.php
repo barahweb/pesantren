@@ -37,9 +37,9 @@ if (isset($_GET["page"])) {
                                 <div class="col">
                                     <div class="detail-box">
                                         <div>
-                                            <h1 style="color: darkolivegreen;">
+                                            <!-- <h1 style="color: darkolivegreen;">
                                                 P E S A N T R E N
-                                            </h1>
+                                            </h1> -->
 
                                         </div>
                                     </div>
