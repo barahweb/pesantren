@@ -146,10 +146,10 @@ if (isset($_GET["page"])) {
                     <div class="col-md-6">
                         <div class="img_container">
                             <div class="img-box b1">
-                                <img src="assets/DSC08853.jpg" alt="" />
+                                <img src="assets/DSC08853.JPG" alt="" />
                             </div>
                             <div class="img-box b2">
-                                <img src="assets/DSC08946.jpg" alt="" />
+                                <img src="assets/DSC08946.JPG" alt="" />
                             </div>
                         </div>
                     </div>
@@ -191,7 +191,7 @@ if (isset($_GET["page"])) {
                 <div class="course_container">
                     <div class="course_content">
                         <div class="box">
-                            <img src="assets/mengaji3.jpg" alt="" />
+                            <img src="assets/mengaji3.JPG" alt="" />
 
                             <h5>
                                 Mengaji <br />
@@ -199,7 +199,7 @@ if (isset($_GET["page"])) {
                             </h5>
                         </div>
                         <div class="box">
-                            <img src="assets/mengaji2.jpg" alt="" />
+                            <img src="assets/mengaji2.JPG" alt="" />
 
                             <h5>
                                 Hafalan <br />
