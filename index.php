@@ -91,7 +91,7 @@ if (isset($_GET["page"])) {
 
         <!-- special section -->
 
-        <section class="special_section">
+        <!-- <section class="special_section">
             <div class="container">
                 <div class="special_container">
                     <div class="box b1">
@@ -132,7 +132,7 @@ if (isset($_GET["page"])) {
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- end special section -->
 
