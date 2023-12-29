@@ -133,7 +133,7 @@ if ($sekarang >= $dataPendaftaran['tanggal_mulai'] && $sekarang  <= $dataPendaft
                                                         <?php if (!count($pembayaran)) : ?>
                                                             <button class="btn btn-danger" data-id="<?= $d['id_santri'] ?>" onclick="lanjutPembayaran($(this).data('id'))">Lanjut Pembayaran</button>
                                                         <?php endif; ?>
-                                                        <button class="btn btn-primary" data-id="<?= $d['id_santri'] ?>" data-toggle="modal" data-target="#exampleModalCenter" onclick="detailKamar($(this).data('id'))">Detail Kelas & Kamar</button>
+                                                        <!-- <button class="btn btn-primary" data-id="<?= $d['id_santri'] ?>" data-toggle="modal" data-target="#exampleModalCenter" onclick="detailKamar($(this).data('id'))">Detail Kelas & Kamar</button> -->
                                                     <?php endif; ?>
 
 
