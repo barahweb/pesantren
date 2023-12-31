@@ -126,23 +126,35 @@ if ($sekarang >= $dataPendaftaran['tanggal_mulai'] && $sekarang  <= $dataPendaft
 
                                                 </td>
 
-                                                <td class="text-center"><?= $status ?></td>
+                                                <td class="text-center">
+                                                <?php 
+                                                if ($d['status'] == '1'):
+                                                ?>
+                                                    <span class="badge badge-success">Santri Diterima</span>
+                                                <?php 
+                                                    elseif ($d['status'] == '2') : ?>
+                                                    <span class="badge badge-danger">Santri Ditolak</span>
+                                                
+                                                    <?php else :  ?>
+                                                        <span class="badge badge-info">Sedang Diproses</span>
+                                                <?php endif; ?>
+                                                </td>
                                                 <td class="text-center">
                                                     <?php if ($d['status'] == 1) : ?>
 
                                                         <?php if (!count($pembayaran)) : ?>
                                                             <button class="btn btn-danger" data-id="<?= $d['id_santri'] ?>" onclick="lanjutPembayaran($(this).data('id'))">Lanjut Pembayaran</button>
                                                         <?php endif; ?>
-                                                        <!-- <button class="btn btn-primary" data-id="<?= $d['id_santri'] ?>" data-toggle="modal" data-target="#exampleModalCenter" onclick="detailKamar($(this).data('id'))">Detail Kelas & Kamar</button> -->
                                                     <?php endif; ?>
 
-
-
-
-                                                    <button class="btn btn-success" data-id="<?= $d['id_santri'] ?>" onclick="editSantri($(this).data('id'))" data-toggle="modal" data-target="#modalsantri">
+                                                    <?php 
+                                                        if ($d['status'] == '0' || $d['status'] == '2'):
+                                                    ?>
+                                                    <button class="btn btn-success" data-id="<?= $d['id_santri'] ?>" data-pendaftaran="<?=$d['id_pendaftaran']; ?>" onclick="editSantri($(this).data('id'), $(this).data('pendaftaran'))" data-toggle="modal" data-target="#modalsantri">
                                                         <i class="fa fa-pen"></i>
                                                     </button>
 
+                                                    <?php endif; ?>
                                                 </td>
 
                                             </tr>
@@ -196,6 +208,7 @@ if ($sekarang >= $dataPendaftaran['tanggal_mulai'] && $sekarang  <= $dataPendaft
                     <div class="modal-body">
                         <div class="row">
                             <input type="hidden" name="idsantri" id="idsantri">
+                            <input type="hidden" name="idpendaftaran" id="idpendaftaran">
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Nama Santri</label>

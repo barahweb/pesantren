@@ -171,7 +171,7 @@ function lanjutPembayaran(idsantri) {
 }
 
 
-function editSantri(idsantri){
+function editSantri(idsantri, idpendaftaran){
     $.ajax({
         method: "post",
         url : 'santridaftar/ajax/datasantri.php',
@@ -187,6 +187,7 @@ function editSantri(idsantri){
             $("#tanggal").val(res.tanggal_lahir)
             $("#tempatlahir").val(res.tempat_lahir)
             $("#alamat").html(res.alamat)
+            $("#idpendaftaran").val(idpendaftaran)
         }
     })
 }

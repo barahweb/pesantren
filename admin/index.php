@@ -124,7 +124,7 @@ if ($hasAlertOpened == false) {
                 customClass: {
                     popup: 'colored-toast'
                 },
-                icon: 'success',
+                icon: 'info',
                 title: 'Santri " . $data[0]['nama'] .  " dinyatakan diterima',
                 timer: 3000,
                 timerProgressBar: true,
@@ -140,144 +140,460 @@ if ($hasAlertOpened == false) {
 }
 
 
+$dataPendaftaran = ambilData("SELECT * FROM tanggal_pendaftaran")[0];
 ?>
-    
-        <!-- Main Content -->
-        <div class="main-content">
+
+<!-- Main Content -->
+<div class="main-content">
 
 
-            <?php if ($_SESSION['role'] == 1) { ?>
-                <section class="section">
-                    <div class="section-header">
-                        <h1>Dashboard</h1>
+    <?php if ($_SESSION['role'] == 1) { ?>
+    <section class="section">
+        <div class="section-header">
+            <h1>Dashboard</h1>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-primary">
+                        <i class="far fa-user mt-4"></i>
                     </div>
-                    <div class="row">
-
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <div class="card card-statistic-1">
-                                <div class="card-icon bg-primary">
-                                    <i class="far fa-user mt-4"></i>
-                                </div>
-                                <div class="card-wrap">
-                                    <div class="card-header">
-                                        <h4>Total Pengurus</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <?php
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4>Total Pengurus</h4>
+                        </div>
+                        <div class="card-body">
+                            <?php
                                                 $jumlah = ambilData("SELECT COUNT(id_pengurus) AS jumlah FROM pengurus")[0]['jumlah'];
                                                 ?>
 
-                                        <?= $jumlah ?>
-                                    </div>
-                                </div>
-                            </div>
+                            <?= $jumlah ?>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <div class="card card-statistic-1">
-                                <div class="card-icon bg-danger">
-                                    <i class="far fa-user mt-4"></i>
-                                </div>
-                                <div class="card-wrap">
-                                    <div class="card-header">
-                                        <h4>Santri Ditolak</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <?php $jumlah = ambilData("SELECT COUNT(id_santri) as jumlah from pendaftaran where status = 2")[0]['jumlah']; ?>
-                                        <?= $jumlah ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <div class="card card-statistic-1">
-                                <div class="card-icon bg-primary">
-                                    <i class="far fa-user mt-4"></i>
-                                </div>
-                                <div class="card-wrap">
-                                    <div class="card-header">
-                                        <h4>Santri Diterima</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <?php $jumlah = ambilData("SELECT COUNT(id_santri) as jumlah from pendaftaran where status = 1")[0]['jumlah']; ?>
-                                        <?= $jumlah ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <div class="card card-statistic-1">
-                                <div class="card-icon bg-success">
-                                    <i class="far fa-user mt-4"></i>
-                                </div>
-                                <div class="card-wrap">
-                                    <div class="card-header">
-                                        <h4>Santri Mendaftar</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <?php $jumlah = ambilData("SELECT COUNT(id_santri) AS jumlah FROM santri")[0]['jumlah']; ?>
-                                        <?= $jumlah ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <div class="card card-statistic-1">
-                                <div class="card-icon bg-warning">
-                                    <i class="far fa-user mt-4"></i>
-                                </div>
-                                <div class="card-wrap">
-                                    <div class="card-header">
-                                        <h4>Wali Santri</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <?php $jumlah = ambilData("SELECT COUNT(id_wali_santri) AS jumlah FROM wali_santri")[0]['jumlah']; ?>
-                                        <?= $jumlah ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-12 col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>Grafik Keungan Per Tahun</h4>
-                                    <div class="card-header-action">
-                                        <div class="btn-group">
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div>
-                                        <canvas id="myChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-danger">
+                        <i class="far fa-user mt-4"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4>Santri Ditolak</h4>
                         </div>
-
+                        <div class="card-body">
+                            <?php $jumlah = ambilData("SELECT COUNT(id_santri) as jumlah from pendaftaran where status = 2")[0]['jumlah']; ?>
+                            <?= $jumlah ?>
+                        </div>
                     </div>
-                </section>
-
-
-
-            <?php } else { ?>
-                <section class="section">
-                    <div class="section-header">
-                        <h1>Selamat Datang</h1>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-primary">
+                        <i class="far fa-user mt-4"></i>
                     </div>
-                </section>
-
-            <?php } ?>
-
-
-
-
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4>Santri Diterima</h4>
+                        </div>
+                        <div class="card-body">
+                            <?php $jumlah = ambilData("SELECT COUNT(id_santri) as jumlah from pendaftaran where status = 1")[0]['jumlah']; ?>
+                            <?= $jumlah ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-success">
+                        <i class="far fa-user mt-4"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4>Santri Mendaftar</h4>
+                        </div>
+                        <div class="card-body">
+                            <?php $jumlah = ambilData("SELECT COUNT(id_santri) AS jumlah FROM santri")[0]['jumlah']; ?>
+                            <?= $jumlah ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-warning">
+                        <i class="far fa-user mt-4"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4>Wali Santri</h4>
+                        </div>
+                        <div class="card-body">
+                            <?php $jumlah = ambilData("SELECT COUNT(id_wali_santri) AS jumlah FROM wali_santri")[0]['jumlah']; ?>
+                            <?= $jumlah ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
-    <?php
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Grafik Keungan Per Tahun</h4>
+                        <div class="card-header-action">
+                            <div class="btn-group">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <?php } else { ?>
+    <section class="section">
+        <div class="section-header">
+            <h1>Selamat Datang, <?= $user['nama'] ?>!</h1>
+        </div>
+    </section>
+
+    <?php } ?>
+        <section class="section">
+            <!-- <div class="section-header">
+                <h1>Activities</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+                    <div class="breadcrumb-item">Activities</div>
+                </div>
+            </div> -->
+            <div class="container-fluid">
+                <div class="">
+                    <div class="alert alert-info alert-has-icon">
+                        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                        <div class="alert-body">
+                            Tanggal pendaftaran dibuka dari tanggal <b><?= tgl_indo($dataPendaftaran['tanggal_mulai'])  . ' - ' . tgl_indo($dataPendaftaran['tanggal_selesai']) ?> </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-5">Langkah Pendaftaran Santri</h4>
+
+                                <div class="hori-timeline" dir="ltr">
+                                    <ul class="list-inline events">
+                                        <li class="list-inline-item event-list">
+                                            <div class="px-4">
+                                                <div class="event-date bg-soft-primary text-primary">1</div>
+                                                <h5 class="font-size-16">Pendaftaran</h5>
+                                                <p class="text-muted">Ketika pendaftaran santri sudah dibuka, silahkan menuju halaman menu, lalu pilih pendaftaran santri, atau klik button dibawah ini.</p>
+                                                <div>
+                                                    <a href="index.php?page=walisantri" class="btn btn-primary btn-sm">Pendaftaran Santri</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item event-list">
+                                            <div class="px-4">
+                                                <div class="event-date bg-soft-success text-success">2</div>
+                                                <h5 class="font-size-16">Pengecekan Berkas</h5>
+                                                <p class="text-muted">Proses selanjutnya adalah pengecekan berkas oleh pengurus santri, anda dapat mengecek data santri di halaman pendaftaran.</p>
+                                                <div>
+                                                    <a href="index.php?page=walisantri" class="btn btn-primary btn-sm">Pendaftaran Santri</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item event-list">
+                                            <div class="px-4">
+                                                <div class="event-date bg-soft-danger text-danger">3</div>
+                                                <h5 class="font-size-16">Santri Ditolak</h5>
+                                                <p class="text-muted">Jika santri ditolak, wali dapat mengubah data santri ataupun berkas pada santri yang ditolak pada halaman pendaftaran.</p>
+                                                <div>
+                                                    <a href="index.php?page=walisantri" class="btn btn-primary btn-sm">Pendaftaran Santri</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item event-list">
+                                            <div class="px-4">
+                                                <div class="event-date bg-soft-warning text-warning">4</div>
+                                                <h5 class="font-size-16">Santri Diterima</h5>
+                                                <p class="text-muted">Jika santri diterima, wali dapat menuju halaman pembayaran dan upload bukti pembayaran yang nantinya akan dicek oleh pengurus santri.</p>
+                                                <div>
+                                                <a href="index.php?page=pembayaran" class="btn btn-primary btn-sm">Pembayaran Santri</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card -->
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="section-body">
+                <h2 class="section-title">September 2018</h2>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="activities">
+                            <div class="activity">
+                                <div class="activity-icon bg-primary text-white shadow-primary">
+                                    <i class="fas fa-comment-alt"></i>
+                                </div>
+                                <div class="activity-detail">
+                                    <div class="mb-2">
+                                        <span class="text-job text-primary">2 min ago</span>
+                                        <span class="bullet"></span>
+                                        <a class="text-job" href="#">View</a>
+                                        <div class="float-right dropdown">
+                                            <a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+                                            <div class="dropdown-menu">
+                                                <div class="dropdown-title">Options</div>
+                                                <a href="#" class="dropdown-item has-icon"><i class="fas fa-eye"></i>
+                                                    View</a>
+                                                <a href="#" class="dropdown-item has-icon"><i class="fas fa-list"></i>
+                                                    Detail</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="#" class="dropdown-item has-icon text-danger"
+                                                    data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
+                                                    data-confirm-text-yes="Yes, IDC"><i class="fas fa-trash-alt"></i>
+                                                    Archive</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>Have commented on the task of "<a href="#">Responsive design</a>".</p>
+                                </div>
+                            </div>
+                            <div class="activity">
+                                <div class="activity-icon bg-primary text-white shadow-primary">
+                                    <i class="fas fa-arrows-alt"></i>
+                                </div>
+                                <div class="activity-detail">
+                                    <div class="mb-2">
+                                        <span class="text-job">1 hour ago</span>
+                                        <span class="bullet"></span>
+                                        <a class="text-job" href="#">View</a>
+                                        <div class="float-right dropdown">
+                                            <a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+                                            <div class="dropdown-menu">
+                                                <div class="dropdown-title">Options</div>
+                                                <a href="#" class="dropdown-item has-icon"><i class="fas fa-eye"></i>
+                                                    View</a>
+                                                <a href="#" class="dropdown-item has-icon"><i class="fas fa-list"></i>
+                                                    Detail</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="#" class="dropdown-item has-icon text-danger"
+                                                    data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
+                                                    data-confirm-text-yes="Yes, IDC"><i class="fas fa-trash-alt"></i>
+                                                    Archive</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>Moved the task "<a href="#">Fix some features that are bugs in the master
+                                            module</a>" from Progress to Finish.</p>
+                                </div>
+                            </div>
+                            <div class="activity">
+                                <div class="activity-icon bg-primary text-white shadow-primary">
+                                    <i class="fas fa-unlock"></i>
+                                </div>
+                                <div class="activity-detail">
+                                    <div class="mb-2">
+                                        <span class="text-job">4 hour ago</span>
+                                        <span class="bullet"></span>
+                                        <a class="text-job" href="#">View</a>
+                                        <div class="float-right dropdown">
+                                            <a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+                                            <div class="dropdown-menu">
+                                                <div class="dropdown-title">Options</div>
+                                                <a href="#" class="dropdown-item has-icon"><i class="fas fa-eye"></i>
+                                                    View</a>
+                                                <a href="#" class="dropdown-item has-icon"><i class="fas fa-list"></i>
+                                                    Detail</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="#" class="dropdown-item has-icon text-danger"
+                                                    data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
+                                                    data-confirm-text-yes="Yes, IDC"><i class="fas fa-trash-alt"></i>
+                                                    Archive</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>Login to the system with ujang@maman.com email and location in Bogor.</p>
+                                </div>
+                            </div>
+                            <div class="activity">
+                                <div class="activity-icon bg-primary text-white shadow-primary">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </div>
+                                <div class="activity-detail">
+                                    <div class="mb-2">
+                                        <span class="text-job">12 hour ago</span>
+                                        <span class="bullet"></span>
+                                        <a class="text-job" href="#">View</a>
+                                        <div class="float-right dropdown">
+                                            <a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+                                            <div class="dropdown-menu">
+                                                <div class="dropdown-title">Options</div>
+                                                <a href="#" class="dropdown-item has-icon"><i class="fas fa-eye"></i>
+                                                    View</a>
+                                                <a href="#" class="dropdown-item has-icon"><i class="fas fa-list"></i>
+                                                    Detail</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="#" class="dropdown-item has-icon text-danger"
+                                                    data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
+                                                    data-confirm-text-yes="Yes, IDC"><i class="fas fa-trash-alt"></i>
+                                                    Archive</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>Log out of the system after 6 hours using the system.</p>
+                                </div>
+                            </div>
+                            <div class="activity">
+                                <div class="activity-icon bg-primary text-white shadow-primary">
+                                    <i class="fas fa-trash"></i>
+                                </div>
+                                <div class="activity-detail">
+                                    <div class="mb-2">
+                                        <span class="text-job">Yesterday</span>
+                                        <span class="bullet"></span>
+                                        <a class="text-job" href="#">View</a>
+                                        <div class="float-right dropdown">
+                                            <a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+                                            <div class="dropdown-menu">
+                                                <div class="dropdown-title">Options</div>
+                                                <a href="#" class="dropdown-item has-icon"><i class="fas fa-eye"></i>
+                                                    View</a>
+                                                <a href="#" class="dropdown-item has-icon"><i class="fas fa-list"></i>
+                                                    Detail</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="#" class="dropdown-item has-icon text-danger"
+                                                    data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
+                                                    data-confirm-text-yes="Yes, IDC"><i class="fas fa-trash-alt"></i>
+                                                    Archive</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>Removing task "Delete all unwanted selectors in CSS files".</p>
+                                </div>
+                            </div>
+                            <div class="activity">
+                                <div class="activity-icon bg-primary text-white shadow-primary">
+                                    <i class="fas fa-trash"></i>
+                                </div>
+                                <div class="activity-detail">
+                                    <div class="mb-2">
+                                        <span class="text-job">Yesterday</span>
+                                        <span class="bullet"></span>
+                                        <a class="text-job" href="#">View</a>
+                                        <div class="float-right dropdown">
+                                            <a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
+                                            <div class="dropdown-menu">
+                                                <div class="dropdown-title">Options</div>
+                                                <a href="#" class="dropdown-item has-icon"><i class="fas fa-eye"></i>
+                                                    View</a>
+                                                <a href="#" class="dropdown-item has-icon"><i class="fas fa-list"></i>
+                                                    Detail</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="#" class="dropdown-item has-icon text-danger"
+                                                    data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
+                                                    data-confirm-text-yes="Yes, IDC"><i class="fas fa-trash-alt"></i>
+                                                    Archive</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>Assign the task of "<a href="#">Redesigning website header and make it responsive
+                                            AF</a>" to <a href="#">Syahdan Ubaidilah</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </section>
+
+
+
+
+</div>
+
+
+<style>
+    body{
+    background:#eee;
+    margin-top:20px;
+}
+.hori-timeline .events {
+    border-top: 3px solid #e9ecef;
+}
+.hori-timeline .events .event-list {
+    display: block;
+    position: relative;
+    text-align: center;
+    padding-top: 70px;
+    margin-right: 0;
+}
+.hori-timeline .events .event-list:before {
+    content: "";
+    position: absolute;
+    height: 36px;
+    border-right: 2px dashed #dee2e6;
+    top: 0;
+}
+.hori-timeline .events .event-list .event-date {
+    position: absolute;
+    top: 38px;
+    left: 0;
+    right: 0;
+    width: 75px;
+    margin: 0 auto;
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+@media (min-width: 1140px) {
+    .hori-timeline .events .event-list {
+        display: inline-block;
+        width: 24%;
+        padding-top: 45px;
+    }
+    .hori-timeline .events .event-list .event-date {
+        top: -12px;
+    }
+}
+.bg-soft-primary {
+    background-color: rgba(64,144,203,.3)!important;
+}
+.bg-soft-success {
+    background-color: rgba(71,189,154,.3)!important;
+}
+.bg-soft-danger {
+    background-color: rgba(231,76,94,.3)!important;
+}
+.bg-soft-warning {
+    background-color: rgba(249,213,112,.3)!important;
+}
+.card {
+    border: none;
+    margin-bottom: 24px;
+    -webkit-box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
+    box-shadow: 0 0 13px 0 rgba(236,236,241,.44);
+}
+
+</style>
+<?php
     }
     require_once "include/footer.php";
     ?>
-    

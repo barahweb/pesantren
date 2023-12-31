@@ -7,11 +7,11 @@ if (isset($_POST['submit'])) {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Berhasil melakukan pendaftaran',
+                    title: 'Berhasil melakukan pendaftaran, Akan di redirect ke halaman login.',
                     showConfirmButton: false,
                     timer: 1500
                 }).then(() => {
-                    document.location.href = 'index.php'
+                    document.location.href = 'admin/login.php'
                 })
             </script>";
     } else {
@@ -70,7 +70,8 @@ $sekarang = date("Y-m-d");
                         </div>
                         <div>
                             <label for="password" style="color:white;margin-bottom:-5px;">Password : </label>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Password " />
+                            <input type="password" class="form-control mb-0" name="password" id="password" placeholder="Password " />
+                            <span class="status status-warning" style="font-size: small; color: #fff3cd;">*Password perlu diingat/dicatat untuk proses login</span>
                         </div>
 
                         <div class="mt-2">

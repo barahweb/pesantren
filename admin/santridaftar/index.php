@@ -124,7 +124,7 @@ if (isset($_POST['submitproses'])) {
                                                     <button class="btn btn-primary" data-id="<?= $d['id_santri'] ?>" onclick="prosesSantri($(this).data('id'))" data-toggle="modal" data-target="#modalProses">Proses</button>
                                                 </td>
                                                 <td class="text-center">
-                                                    <button class="btn btn-success" data-id="<?= $d['id_santri'] ?>" onclick="editSantri($(this).data('id'))" data-toggle="modal" data-target="#exampleModalCenter">
+                                                    <button class="btn btn-success" data-id="<?= $d['id_santri'] ?>"data-pendaftaran="<?=$d['id_pendaftaran']; ?>" onclick="editSantri($(this).data('id'), $(this).data('pendaftaran'))" data-toggle="modal" data-target="#exampleModalCenter">
                                                         <i class="fa fa-pen"></i>
                                                     </button>
 
@@ -179,7 +179,7 @@ if (isset($_POST['submitproses'])) {
                     <div class="modal-body">
                         <div class="row">
                             <input type="hidden" name="idsantri" id="idsantri">
-
+                            <input type="hidden" name="idpendaftaran" id="idpendaftaran">
 
                             <div class="col-lg-6">
                                 <div class="form-group">

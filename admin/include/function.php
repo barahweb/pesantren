@@ -3,7 +3,7 @@
 
 session_start();
 date_default_timezone_set('Asia/Jakarta');
-define("DBNAME", 'pesantren');
+define("DBNAME", 'pesantren2');
 define('HOST', 'localhost');
 define('USERNAME', 'root');
 define('PASSWORD', '');
@@ -198,7 +198,7 @@ function editAdmin($data)
         // validation passes
 
         $nama       = clearData($data['nama']);
-        $hak       = clearData($data['hak']);
+        $hak        = clearData($data['hak']);
         $idpengurus = clearData($data['idpengurus']);
         $email      = clearData($data['email']);
         $tanggal    = clearData($data['tanggal']);
@@ -390,11 +390,16 @@ function editSantri($data)
         $tempatlahir        = clearData($data['tempatlahir']);
         $alamat             = clearData($data['alamat']);
         $idsantri           = clearData($data['idsantri']);
+        $idpendaftaran      = clearData($data['idpendaftaran']);
 
 
 
         $query = "UPDATE santri SET nama = '{$nama}', jk = '{$jk}', alamat = '{$alamat}', tempat_lahir = '{$tempatlahir}', tanggal_lahir = '{$tanggal}', no_hp = '{$nohp}' WHERE id_santri = {$idsantri}";
         mysqli_query($koneksi, $query);
+        $return += mysqli_affected_rows($koneksi);
+
+        $query2 = "UPDATE pendaftaran SET status = 0 WHERE id_pendaftaran = {$idpendaftaran}";
+        mysqli_query($koneksi, $query2);
         $return += mysqli_affected_rows($koneksi);
 
 
