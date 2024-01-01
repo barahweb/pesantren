@@ -97,12 +97,12 @@ if (isset($_POST['submitPembayaran'])) {
                                                 <?php if($d['status'] == 0) : ?>
                                                     <button class="btn btn-success" data-id="<?= $d['id_santri'] ?>" onclick="uploadBerkasPembayaran($(this).data('id'))" data-toggle="modal" data-target="#modalPembayaran">
                                                         Upload Pembayaran</button>
-                                                <?php elseif($d['status'] == 2) : ?>
+                                                <?php elseif($d['status'] == 2 || $d['status'] == 1) : ?>
                                                     <a class="btn btn-info" id="download" href="assets/berkas/<?=$d['pdf']; ?>" download="assets/berkas/<?=$d['pdf']; ?>">Download Berkas</a>
-                                                    <?php if($_SESSION['role'] == 1 ): ?>
+                                                    <?php if($_SESSION['role'] == 1 && $d['status'] == 2): ?>
                                                         <button class="btn btn-success" data-id="<?= $d['id_santri'] ?>" onclick="prosesPembayaran($(this).data('id'))">
                                                         Proses Pembayaran</button>
-                                                        
+
                                                     <?php endif; ?>
                                                 <?php endif; ?>
                                                 </td>
