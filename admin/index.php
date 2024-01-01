@@ -126,7 +126,7 @@ if ($hasAlertOpened == false) {
                 },
                 icon: 'info',
                 title: 'Santri " . $data[0]['nama'] .  " dinyatakan diterima',
-                timer: 3000,
+                timer: 1500,
                 timerProgressBar: true,
                 showConfirmButton: false,
             })
@@ -279,7 +279,8 @@ $dataPendaftaran = ambilData("SELECT * FROM tanggal_pendaftaran")[0];
                     <div class="breadcrumb-item">Activities</div>
                 </div>
             </div> -->
-            <div class="container-fluid">
+            <?php if($_SESSION['role'] == '2'): ?>
+                <div class="container-fluid">
                 <div class="">
                     <div class="alert alert-info alert-has-icon">
                         <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
@@ -338,12 +339,49 @@ $dataPendaftaran = ambilData("SELECT * FROM tanggal_pendaftaran")[0];
                                         </li>
                                     </ul>
                                 </div>
+                                <br>
+                                <br>
+                                <div class="hori-timeline" dir="ltr">
+                                    <ul class="list-inline events">
+                                        <li class="list-inline-item event-list">
+                                            <div class="px-4">
+                                                <div class="event-date bg-soft-primary text-primary">5</div>
+                                                <h5 class="font-size-16">Pembayaran</h5>
+                                                <p class="text-muted">Ketika santri sudah diterima, maka wali dapat melakukan pembayaran dan upload berkas/bukti pembayaran pada menu pembayaran.</p>
+                                                <div>
+                                                    <a href="index.php?page=pembayaran" class="btn btn-primary btn-sm">Upload Bukti Pembayaran</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item event-list">
+                                            <div class="px-4">
+                                                <div class="event-date bg-soft-success text-success">6</div>
+                                                <h5 class="font-size-16">Pengecekan Bukti Pembayaran</h5>
+                                                <p class="text-muted">Pihak pesantren melakukan pengecekan pembayaran, wali dapat mengecek status pada halaman pembayaran</p>
+                                                <div>
+                                                <a href="index.php?page=pembayaran" class="btn btn-primary btn-sm">Cek Status Pembayaran</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-inline-item event-list">
+                                            <div class="px-4">
+                                                <div class="event-date bg-soft-danger text-danger">7</div>
+                                                <h5 class="font-size-16">Pembayaran Berhasil DIproses</h5>
+                                                <p class="text-muted">Pihak pesantren telah melakukan pengecekan dan pembayaran dinyatakan lunas, wali dapat mengecek status pada halaman pendaftaran santri</p>
+                                                <div>
+                                                <a href="index.php?page=walisantri" class="btn btn-primary btn-sm">Cek Status Pembayaran</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <!-- end card -->
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
             <!-- <div class="section-body">
                 <h2 class="section-title">September 2018</h2>
                 <div class="row">

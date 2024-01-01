@@ -279,31 +279,31 @@ if (isset($_POST['submitproses'])) {
 
 </div>
 <script>
-    $(function() {
-        $("#proses").change(function(e) {
-            let proses = $(this).val()
-            $(".masuk").empty()
-            if (proses == 1) {
-                let el = $(`
+    // $(function() {
+    //     $("#proses").change(function(e) {
+    //         let proses = $(this).val()
+    //         $(".masuk").empty()
+    //         if (proses == 1) {
+    //             let el = $(`
 
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label for="nama">Kamar : </label>
-                                        <input type="text" class="form-control" name="kamar" id="kamar" placeholder="Masukan Nama Kamar">
-                                    </div>
-                                </div>
+    //                             <div class="col-lg-12">
+    //                                 <div class="form-group">
+    //                                     <label for="nama">Kamar : </label>
+    //                                     <input type="text" class="form-control" name="kamar" id="kamar" placeholder="Masukan Nama Kamar">
+    //                                 </div>
+    //                             </div>
 
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label for="nama">Keterangan Kamar : </label>
-                                        <textarea name="keterangan" id="keterangan" class="form-control" cols="30" rows="10" placeholder="Keterangan Kamar"></textarea>
-                                    </div>
-                                </div>`)
+    //                             <div class="col-lg-12">
+    //                                 <div class="form-group">
+    //                                     <label for="nama">Keterangan Kamar : </label>
+    //                                     <textarea name="keterangan" id="keterangan" class="form-control" cols="30" rows="10" placeholder="Keterangan Kamar"></textarea>
+    //                                 </div>
+    //                             </div>`)
 
-                $(".masuk").append(el)
-            }
-        })
-    })
+    //             $(".masuk").append(el)
+    //         }
+    //     })
+    // })
 
     function prosesSantri(idsantri) {
         $("#idsantriproses").val(idsantri);

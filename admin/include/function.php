@@ -561,23 +561,66 @@ function prosesSantri($data)
     $proses     = clearData($data['proses']);
 
 
-    if ($proses == 1) {
-        $kelas          = clearData($data['kelas']);
-        $kamar          = clearData($data['kamar']);
-        $keterangan     = clearData($data['keterangan']);
+    // if ($proses == 1) {
+    //     $kelas          = clearData($data['kelas']);
+    //     $kamar          = clearData($data['kamar']);
+    //     $keterangan     = clearData($data['keterangan']);
 
-        $query = "INSERT INTO kamar VALUES('',{$idsantri},'{$kamar}','{$keterangan}')";
-        mysqli_query($koneksi, $query);
-        $query = "INSERT INTO kelas VALUES('',{$idsantri},'{$kelas}')";
-        mysqli_query($koneksi, $query);
-    }
+    //     $query = "INSERT INTO kamar VALUES('',{$idsantri},'{$kamar}','{$keterangan}')";
+    //     mysqli_query($koneksi, $query);
+    //     $query = "INSERT INTO kelas VALUES('',{$idsantri},'{$kelas}')";
+    //     mysqli_query($koneksi, $query);
+
+
+    // }
+
+    $id = generateRandomString(15);
+
+
+    $idpemesanan    = $id;
+    $tanggal        = date("Y-m-d", strtotime("+7 day"));
+    $harga          = HARGA;
+
+    $query = "INSERT INTO tagihan VALUES('{$idpemesanan}',{$idsantri},'Pembayaran Santri Baru','{$tanggal}',{$harga},'',0)";
+    mysqli_query($koneksi, $query);
+
+
     $query      = "UPDATE pendaftaran SET status = {$proses} WHERE id_santri = {$idsantri}";
-
-
 
     mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi);
 }
+
+
+function updatepembyaranjpg($data) {
+    global $koneksi;
+
+    $idsantri   = clearData($data['idsantripembayaran']);
+
+    $gambar     = $_FILES['file']['name'];
+    
+
+    $eks_dibolehkan = ['png', 'jpg', 'jpeg']; // ekstensi yang diperbolehkan
+    $x = explode('.', $gambar); // memisahkan nama file dengan ekstensi
+    $ekstensi = strtolower(end($x));
+    $file_tmp = $_FILES['file']['tmp_name'];
+    move_uploaded_file($file_tmp, 'assets/berkas/' . $gambar);
+
+    $query          = "UPDATE tagihan SET pdf = '{$gambar}', status = 2 WHERE id_santri = {$idsantri} AND status = 0";
+    mysqli_query($koneksi, $query);
+    return mysqli_affected_rows($koneksi);
+
+}
+
+// function updateProsesPembayaran($data) {
+//     global $koneksi;
+
+//     $idsantri   = clearData($data['idsantripembayaran']);
+
+//     $query          = "UPDATE tagihan SET status = 1 WHERE id_santri = {$idsantri} AND status = 2";
+//     mysqli_query($koneksi, $query);
+//     return mysqli_affected_rows($koneksi);
+// }
 
 
 function hakAkses($role, $page)

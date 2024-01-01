@@ -155,7 +155,6 @@ function lanjutPembayaran(idsantri) {
                 // Optional
                 onPending: function(result) {
                     /* You may add your own js here, this is just example */
-                   
                     transaksi(idsantri,JSON.stringify(result));
                 },
                 // Optional
@@ -188,6 +187,53 @@ function editSantri(idsantri, idpendaftaran){
             $("#tempatlahir").val(res.tempat_lahir)
             $("#alamat").html(res.alamat)
             $("#idpendaftaran").val(idpendaftaran)
+        }
+    })
+}
+function uploadBerkasPembayaran(idpendaftaran) {
+    $("#idsantripembayaran").val(idpendaftaran)
+}
+
+function prosesPembayaran(e) {
+    Swal.fire({
+        title: 'Apakah Anda Yakin?',
+        text: "Proses tidak bisa dirubah!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Proses!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            $.ajax({
+                url: 'walisantri/ajax/updatePembayaran.php',
+                method: "post",
+                data: {
+                    e
+                },
+                success: res => {
+                    if (res) {
+                        Swal.fire(
+                            'Berhasil!',
+                            'Pembayaran berhasil diproses!',
+                            'success'
+                        ).then(() => {
+                            window.location.reload();
+                        })
+                    } else {
+                        Swal.fire(
+                            'Gagal!',
+                            'Pembayaran gagal diproses!',
+                            'error'
+                        ).then(() => {
+                            window.location.reload();
+                        })
+                    }
+                }
+            })
+
+
         }
     })
 }

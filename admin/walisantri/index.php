@@ -108,7 +108,7 @@ if ($sekarang >= $dataPendaftaran['tanggal_mulai'] && $sekarang  <= $dataPendaft
                                         <?php foreach ($data as $d) :
                                             $status = "Sedang Diproses";
                                             if ($d['status'] == 1) $status = "Diterima";
-                                            $pembayaran = ambilData("SELECT id_tagihan FROM tagihan WHERE id_santri = {$d['id_santri']}");
+                                            $pembayaran = ambilData("SELECT id_tagihan,status FROM tagihan WHERE id_santri = {$d['id_santri']}")[0];
 
                                             ?>
                                             <tr>
@@ -142,8 +142,14 @@ if ($sekarang >= $dataPendaftaran['tanggal_mulai'] && $sekarang  <= $dataPendaft
                                                 <td class="text-center">
                                                     <?php if ($d['status'] == 1) : ?>
 
-                                                        <?php if (!count($pembayaran)) : ?>
-                                                            <button class="btn btn-danger" data-id="<?= $d['id_santri'] ?>" onclick="lanjutPembayaran($(this).data('id'))">Lanjut Pembayaran</button>
+                                                        <?php if (count($pembayaran)) : ?>
+                                                            <?php if($pembayaran['status'] == 1): ?>
+                                                                <button class="btn btn-success">Lunas</button>
+                                                            <?php elseif($pembayaran['status'] == 2) : ?>
+                                                                <button class="btn btn-warning">Menunggu Pembayaran</button>
+
+                                                            <?php endif; ?>
+                                                            <!-- <button class="btn btn-danger" data-id="<?= $d['id_santri'] ?>" onclick="lanjutPembayaran($(this).data('id'))">Lanjut Pembayaran</button> -->
                                                         <?php endif; ?>
                                                     <?php endif; ?>
 
@@ -165,23 +171,7 @@ if ($sekarang >= $dataPendaftaran['tanggal_mulai'] && $sekarang  <= $dataPendaft
                                 </table>
                             </div>
                         </div>
-                        <!-- <div class="card-footer text-right">
-                            <nav class="d-inline-block">
-                                <ul class="pagination mb-0">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">2</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div> -->
+
                     </div>
                 </div>
 

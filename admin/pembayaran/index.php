@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 if ($_SESSION['role'] == 2) {
     $data = ambilData("SELECT tagihan.*,santri.nama FROM tagihan INNER JOIN santri USING(id_santri) INNER JOIN wali_santri USING(id_wali_santri) WHERE santri.id_wali_santri = {$_SESSION['user']}");
 } else {
@@ -10,6 +6,36 @@ if ($_SESSION['role'] == 2) {
 }
 
 
+if (isset($_POST['submitPembayaran'])) {
+    // var_dump(updatepembyaranjpg($_POST));
+    if (updatepembyaranjpg($_POST) > 0) {
+        echo "
+        <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Data berhasil dirubah',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    document.location.href = 'index.php?page=pembayaran'
+                })
+            </script>";
+    } else {
+        echo "
+        <script>
+                Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Data gagal dirubah',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    document.location.href = 'index.php?page=pembayaran'
+                })
+            </script>";
+    }
+}
 
 ?>
 
@@ -40,8 +66,8 @@ if ($_SESSION['role'] == 2) {
                                             <th class="text-center">Nama Tagihan</th>
                                             <th class="text-center">Batas Pembayaran</th>
                                             <th class="text-center">Harga</th>
-                                            <th class="text-center">Cara Membayar</th>
                                             <th class="text-center">Status</th>
+                                            <th class="text-center">Upload Pembayaran</th>
 
                                         </tr>
                                         </tr>
@@ -57,48 +83,35 @@ if ($_SESSION['role'] == 2) {
                                                 <td class="text-center"><?= $d['batas_pembayaran'] ?></td>
                                                 <td class="text-center"><?= rupiah($d['harga']) ?></td>
                                                 <td class="text-center">
-                                                    <a href="<?= $d['pdf'] ?>" target="_blank">
-                                                        <button class="btn btn-info">Cara Membayar</button>
-                                                    </a>
-
-                                                </td>
-                                                <td class="text-center">
                                                     <?php
                                                         if ($d['status'] == 1) :
                                                             ?>
                                                         <button class="btn btn-success">Sudah Membayar</button>
+                                                    <?php elseif($d['status'] == 2) : ?>
+                                                        <button class="btn btn-info">Menunggu Proses Pengecekan</button>
                                                     <?php else : ?>
                                                         <button class="btn btn-danger">Belum Membayar</button>
                                                     <?php endif; ?>
                                                 </td>
-
-
-
+                                                <td class="text-center">
+                                                <?php if($d['status'] == 0) : ?>
+                                                    <button class="btn btn-success" data-id="<?= $d['id_santri'] ?>" onclick="uploadBerkasPembayaran($(this).data('id'))" data-toggle="modal" data-target="#modalPembayaran">
+                                                        Upload Pembayaran</button>
+                                                <?php elseif($d['status'] == 2) : ?>
+                                                    <a class="btn btn-info" id="download" href="assets/berkas/<?=$d['pdf']; ?>" download="assets/berkas/<?=$d['pdf']; ?>">Download Berkas</a>
+                                                    <?php if($_SESSION['role'] == 1 ): ?>
+                                                        <button class="btn btn-success" data-id="<?= $d['id_santri'] ?>" onclick="prosesPembayaran($(this).data('id'))">
+                                                        Proses Pembayaran</button>
+                                                        
+                                                    <?php endif; ?>
+                                                <?php endif; ?>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
-
-
                                 </table>
                             </div>
                         </div>
-                        <!-- <div class="card-footer text-right">
-                            <nav class="d-inline-block">
-                                <ul class="pagination mb-0">
-                                    <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">2</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div> -->
                     </div>
                 </div>
 
@@ -184,4 +197,35 @@ if ($_SESSION['role'] == 2) {
         </div>
     </div>
 
+
+
+    <!-- MODAL UPLOAD BERKAS PEMBAYARAN -->
+    <div class="modal fade" id="modalPembayaran" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Upload Bukti Pembayaran</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="row">
+                            <input type="hidden" name="idsantripembayaran" id="idsantripembayaran">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Upload Bukti Pembayaran</label>
+                                    <input type="file" class="form-control" name="file" id="file" placeholder="Berkas Pembayaran " />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" name="submitPembayaran" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
