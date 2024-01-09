@@ -141,6 +141,8 @@ if ($hasAlertOpened == false) {
 
 
 $dataPendaftaran = ambilData("SELECT * FROM tanggal_pendaftaran")[0];
+$dataDaftar = ambilData("SELECT santri.nama FROM pendaftaran join santri on santri.id_santri = pendaftaran.id_santri join wali_santri on wali_santri.id_wali_santri = santri.id_wali_santri where wali_santri.id_wali_santri = {$idwalisantri}") ;
+$dataGagal  = ambilData("SELECT santri.nama FROM pendaftaran join santri on santri.id_santri = pendaftaran.id_santri join wali_santri on wali_santri.id_wali_santri = santri.id_wali_santri where pendaftaran.status = 2 and wali_santri.id_wali_santri = {$idwalisantri} LIMIT 3") ;
 ?>
 
 <!-- Main Content -->
@@ -289,6 +291,45 @@ $dataPendaftaran = ambilData("SELECT * FROM tanggal_pendaftaran")[0];
                         </div>
                     </div>
                 </div>
+                <?php if(COUNT($data) > 0): ?>
+                <div class="">
+                    <div class="alert alert-success alert-has-icon">
+                        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                        <div class="alert-body">
+                        Selamat! Pendaftaran Santri <?php foreach($data as $santri): ?> <?=$santri['nama']; ?>, <?php endforeach; ?> Diterima, Mohon Nelakukan Pendaftaran Ulang Ke Sekretariat Pondok Pesantren Nurul Iman Dengan membawa Berkas Persyaratan Sebagai Berikut : 
+                        <br> - Fotocopy KTP Calon Santri Sebanyak 2 Lembar (Apabila Sudah Punya)
+                        <br> - Fotocopy Akte kelahiran sebanyak 2 lembar
+                        <br> - Fotocopy KTP orang tua
+                        <br> - Fotocopy Kartu Keluarga 
+                        <br> - Pass foto 3x4 sebanyak 3 lembar
+                        <br> - Surat keterangan tidak mampu (Khusus Dluafa)
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                <?php if (COUNT($dataDaftar) == 0): ?>
+                    <div class="">
+                    <div class="alert alert-warning alert-has-icon">
+                        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                        <div class="alert-body">
+                            Selamat Akun Anda Berhasil Dibuat, Untuk Mendaftarkan Santri baru Silahkan Menuju Ke Menu Pendaftaran Santri atau ikuti langkah pendaftaran santri dibawah ini
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                <?php if(COUNT($dataGagal) > 0): ?>
+                <div class="">
+                    <div class="alert alert-danger alert-has-icon">
+                        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                        <div class="alert-body">
+                            Pendaftaran <?php foreach($dataGagal as $dataGagalSantri): ?> <?=$dataGagalSantri['nama']; ?>, <?php endforeach; ?> ditolak dikarenakan berkas bermasalah, mohon lengkapi berkas kembali untuk melanjutkan pendaftaran
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+                
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">

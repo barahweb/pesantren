@@ -34,6 +34,32 @@
 <?php $url = $_SERVER['REQUEST_URI']; ?>
 
 <body>
+    
+<?php 
+$hasAlertOpened = false;
+
+if ($hasAlertOpened == false && $url == '/index.php' || $url == '/') {
+        
+            echo "<script>
+                const Toast = Swal.mixin({
+                    toast: true,
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                    });
+                    Toast.fire({
+                    icon: 'success',
+                    title: 'Jika belum memiliki akun, silahkan melakukan pendaftaran dengan klik daftar wali santri pada kanan atas!'
+                });
+            </script>";
+    
+            $hasAlertOpened = true;
+}
+?>
     <div class="hero_area">
         <!-- header section strats -->
         <header class="header_section">
