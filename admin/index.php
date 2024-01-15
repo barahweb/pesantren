@@ -245,7 +245,7 @@ $dataGagal  = ambilData("SELECT santri.nama FROM pendaftaran join santri on sant
             <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Grafik Keungan Per Tahun</h4>
+                        <h4>Grafik Keuangan Per Tahun</h4>
                         <div class="card-header-action">
                             <div class="btn-group">
 

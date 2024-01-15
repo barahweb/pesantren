@@ -86,7 +86,7 @@ if (isset($_POST['submit'])) {
 
                                     <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label>Berkas(pdf)</label>
+                                            <label>Upload Foto/Berkas Ijazah PendidikanTerakhir</label>
                                             <input type="file" class="form-control" name="file" id="file" placeholder="Tempat Lahir " />
                                         </div>
                                     </div>
