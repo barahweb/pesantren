@@ -44,7 +44,7 @@ if ($hasAlertOpened == false && $url == '/index.php' || $url == '/') {
                 const Toast = Swal.mixin({
                     toast: true,
                     showConfirmButton: false,
-                    timer: 5000,
+                    timer: 7000,
                     timerProgressBar: true,
                     didOpen: (toast) => {
                         toast.onmouseenter = Swal.stopTimer;
@@ -77,13 +77,13 @@ if ($hasAlertOpened == false && $url == '/index.php' || $url == '/') {
 
                     <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item <?=$url == '/index.php' || $url == '/' ? 'active' : ''; ?>">
+                            <li class="nav-item <?=$url == '/index.php' || $url == '/' ? 'active' : 'active'; ?>">
                                 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                             </li>
-                            <li class="nav-item  <?=$url != '/index.php' && $url != '/' ? 'active' : ''; ?>">
+                            <li class="nav-item  <?=$url != '/index.php' && $url != '/' ? 'active' : 'active'; ?>">
                                 <a class="nav-link" href="index.php?page=daftar"> Daftar Wali Santri </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a class="nav-link" target="_blank" href="admin/login.php"> Login Wali Santri </a>
                             </li>
 

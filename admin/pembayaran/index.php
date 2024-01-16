@@ -67,6 +67,7 @@ if (isset($_POST['submitPembayaran'])) {
                                             <th class="text-center">Batas Pembayaran</th>
                                             <th class="text-center">Harga</th>
                                             <th class="text-center">Status</th>
+                                            <th class="text-center">Cara Bayar</th>
                                             <th class="text-center">Upload Pembayaran</th>
 
                                         </tr>
@@ -93,6 +94,7 @@ if (isset($_POST['submitPembayaran'])) {
                                                         <button class="btn btn-danger">Belum Membayar</button>
                                                     <?php endif; ?>
                                                 </td>
+                                                <td><a class="btn btn-warning" id="download" href="assets/img/carabayar.jpg" download="assets/img/carabayar.jpg">Cara Bayar</a></td>
                                                 <td class="text-center">
                                                 <?php if($d['status'] == 0) : ?>
                                                     <button class="btn btn-success" data-id="<?= $d['id_santri'] ?>" onclick="uploadBerkasPembayaran($(this).data('id'))" data-toggle="modal" data-target="#modalPembayaran">

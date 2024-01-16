@@ -246,7 +246,7 @@ if ($sekarang >= $dataPendaftaran['tanggal_mulai'] && $sekarang  <= $dataPendaft
                                 <hr>
                                 <p style="color:red;font-size:12px;">*Abaikan jika tidak ingin mengganti file</p>
                                 <div class="form-group">
-                                    <label>Berkas(pdf)</label>
+                                    <label>Berkas(pdf/jpg)</label>
                                     <input type="file" class="form-control" name="file" id="file" placeholder="File Berkas " />
                                 </div>
                             </div>

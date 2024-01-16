@@ -43,7 +43,7 @@ function upload($tanda = 0, $name = 'file')
         return false;
     }
     //izinkan eksistensi file
-    $gambarValid        = ['pdf'];
+    $gambarValid        = ['pdf','png', 'jpg', 'jpeg'];
     //pecah string gambar menjadi array dipisahkan setelah tanda .
     $namaGambarValid    = explode('.', $namaGambar);
     //ambil array diindex terakhir lalu ubah menjadi hurufkecil
@@ -428,10 +428,6 @@ function tambahWaliSantri($data)
 {
 
     global $koneksi, $validator;
-
-
-
-
 
     // make it
     $validation = $validator->make($_POST + $_FILES, [
