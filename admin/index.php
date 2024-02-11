@@ -362,7 +362,7 @@ $dataGagal  = ambilData("SELECT santri.nama FROM pendaftaran join santri on sant
                                             <div class="px-4">
                                                 <div class="event-date bg-soft-danger text-danger">3</div>
                                                 <h5 class="font-size-16">Santri Ditolak</h5>
-                                                <p class="text-muted">Jika santri ditolak, wali dapat mengubah data santri ataupun berkas pada santri yang ditolak pada halaman pendaftaran.</p>
+                                                <p class="text-muted">Jika santri ditolak, wali santri dapat mengubah data santri ataupun upload ulang berkas pada santri yang ditolak pada halaman pendaftaran.</p>
                                                 <div>
                                                     <a href="index.php?page=walisantri" class="btn btn-primary btn-sm">Pendaftaran Santri</a>
                                                 </div>
@@ -388,7 +388,7 @@ $dataGagal  = ambilData("SELECT santri.nama FROM pendaftaran join santri on sant
                                             <div class="px-4">
                                                 <div class="event-date bg-soft-primary text-primary">5</div>
                                                 <h5 class="font-size-16">Pembayaran</h5>
-                                                <p class="text-muted">Ketika santri sudah diterima, maka wali dapat melakukan pembayaran dan upload berkas/bukti pembayaran pada menu pembayaran.</p>
+                                                <p class="text-muted">Ketika santri sudah diterima, maka wali santri dapat melakukan pembayaran dan upload berkas/bukti pada halaman pembayaran</p>
                                                 <div>
                                                     <a href="index.php?page=pembayaran" class="btn btn-primary btn-sm">Upload Bukti Pembayaran</a>
                                                 </div>
@@ -398,7 +398,7 @@ $dataGagal  = ambilData("SELECT santri.nama FROM pendaftaran join santri on sant
                                             <div class="px-4">
                                                 <div class="event-date bg-soft-success text-success">6</div>
                                                 <h5 class="font-size-16">Pengecekan Bukti Pembayaran</h5>
-                                                <p class="text-muted">Pihak pesantren melakukan pengecekan pembayaran, wali dapat mengecek status pada halaman pembayaran</p>
+                                                <p class="text-muted">Pengurus melakukan pengecekan pembayaran, wali dapat mengecek status pembayaran pada halaman pembayaran </p>
                                                 <div>
                                                 <a href="index.php?page=pembayaran" class="btn btn-primary btn-sm">Cek Status Pembayaran</a>
                                                 </div>
@@ -408,7 +408,7 @@ $dataGagal  = ambilData("SELECT santri.nama FROM pendaftaran join santri on sant
                                             <div class="px-4">
                                                 <div class="event-date bg-soft-danger text-danger">7</div>
                                                 <h5 class="font-size-16">Pembayaran Berhasil DIproses</h5>
-                                                <p class="text-muted">Pihak pesantren telah melakukan pengecekan dan pembayaran dinyatakan lunas, wali dapat mengecek status pada halaman pendaftaran santri</p>
+                                                <p class="text-muted">Pihak pesantren telah mengecek dan pembayaran dinyatakan lunas, wali dapat menuju halaman pendaftaran santri</p>
                                                 <div>
                                                 <a href="index.php?page=walisantri" class="btn btn-primary btn-sm">Cek Status Pembayaran</a>
                                                 </div>

@@ -238,6 +238,52 @@ function prosesPembayaran(e) {
     })
 }
 
+function hapusSantri(e, f) {
+    Swal.fire({
+        title: 'Apakah Anda Yakin?',
+        text: "Proses tidak bisa dirubah!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Proses!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            $.ajax({
+                url: 'walisantri/ajax/hapusSantri.php',
+                method: "post",
+                data: {
+                    e,
+                    f
+                },
+                success: res => {
+                    console.log(res)
+                    if (res) {
+                        Swal.fire(
+                            'Berhasil!',
+                            'Santri berhasil dihapus!',
+                            'success'
+                        ).then(() => {
+                            window.location.reload();
+                        })
+                    } else {
+                        Swal.fire(
+                            'Gagal!',
+                            'Santri gagal dihapus!',
+                            'error'
+                        ).then(() => {
+                            window.location.reload();
+                        })
+                    }
+                }
+            })
+
+
+        }
+    })
+}
+
 
 function editWaliSantri(idwalisantri){
     $.ajax({

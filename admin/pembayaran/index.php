@@ -69,6 +69,7 @@ if (isset($_POST['submitPembayaran'])) {
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Cara Bayar</th>
                                             <th class="text-center">Upload Pembayaran</th>
+                                            <th class="text-center">Aksi</th>
 
                                         </tr>
                                         </tr>
@@ -107,6 +108,10 @@ if (isset($_POST['submitPembayaran'])) {
 
                                                     <?php endif; ?>
                                                 <?php endif; ?>
+                                                </td>
+                                                <td>
+                                                <button class="btn btn-danger" data-id="<?= $d['id_santri'] ?>" onclick="hapusSantri('<?=$d['id_tagihan']; ?>', $(this).data('id'))">
+                                                        Hapus Santri</button>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
