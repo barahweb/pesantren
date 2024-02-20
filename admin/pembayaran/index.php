@@ -1,8 +1,8 @@
 <?php
 if ($_SESSION['role'] == 2) {
-    $data = ambilData("SELECT tagihan.*,santri.nama FROM tagihan INNER JOIN santri USING(id_santri) INNER JOIN wali_santri USING(id_wali_santri) WHERE santri.id_wali_santri = {$_SESSION['user']}");
+    $data = ambilData("SELECT tagihan.*,santri.nama FROM tagihan INNER JOIN santri USING(id_santri) INNER JOIN wali_santri USING(id_wali_santri) WHERE santri.id_wali_santri = {$_SESSION['user']} AND status != 10");
 } else {
-    $data = ambilData("SELECT tagihan.*,santri.nama FROM tagihan INNER JOIN santri USING(id_santri)");
+    $data = ambilData("SELECT tagihan.*,santri.nama FROM tagihan INNER JOIN santri USING(id_santri) where status != 10");
 }
 
 

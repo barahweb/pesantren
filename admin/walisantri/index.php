@@ -3,7 +3,7 @@
 
 
 
-$data = ambilData("SELECT santri.*,pendaftaran.*,wali_santri.id_wali_santri,berkas.* FROM santri INNER JOIN pendaftaran USING(id_santri) INNER JOIN wali_santri USING(id_wali_santri) INNER JOIN berkas USING(id_santri) WHERE santri.id_wali_santri = {$idwalisantri}");
+$data = ambilData("SELECT santri.*,pendaftaran.*,wali_santri.id_wali_santri,berkas.* FROM santri INNER JOIN pendaftaran USING(id_santri) INNER JOIN wali_santri USING(id_wali_santri) INNER JOIN berkas USING(id_santri) WHERE santri.id_wali_santri = {$idwalisantri} and status != 10"); 
 
 
 if (isset($_POST['submit'])) {
@@ -99,6 +99,7 @@ if ($sekarang >= $dataPendaftaran['tanggal_mulai'] && $sekarang  <= $dataPendaft
                                             <th class="text-center">Tempat Lahir</th>
                                             <th class="text-center">No Hp</th>
                                             <th class="text-center">Berkas</th>
+                                            <th class="text-center">Foto KK</th>
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Action</th>
                                         </tr>
@@ -108,7 +109,7 @@ if ($sekarang >= $dataPendaftaran['tanggal_mulai'] && $sekarang  <= $dataPendaft
                                         <?php foreach ($data as $d) :
                                             $status = "Sedang Diproses";
                                             if ($d['status'] == 1) $status = "Diterima";
-                                            $pembayaran = ambilData("SELECT id_tagihan,status FROM tagihan WHERE id_santri = {$d['id_santri']}")[0];
+                                            $pembayaran = ambilData("SELECT id_tagihan,status FROM tagihan WHERE id_santri = {$d['id_santri']}")[0] ?? NULL;
 
                                             ?>
                                             <tr>
@@ -122,8 +123,11 @@ if ($sekarang >= $dataPendaftaran['tanggal_mulai'] && $sekarang  <= $dataPendaft
                                                     <a href="assets/berkas/<?= $d['nama_berkas'] ?>" terget="_blank">
                                                         <button class="btn btn-info">Lihat Berkas</button>
                                                     </a>
-
-
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="assets/berkas/<?= $d['fotokk'] ?>" terget="_blank">
+                                                        <button class="btn btn-info">Lihat Foto KK</button>
+                                                    </a>
                                                 </td>
 
                                                 <td class="text-center">

@@ -317,8 +317,21 @@ function tambahSantri($data)
 
         // $password           = password_hash($password, PASSWORD_BCRYPT);
 
+
+        $gambar     = $_FILES['fotokk']['name'];
+    
+
+        $eks_dibolehkan = ['png', 'jpg', 'jpeg']; // ekstensi yang diperbolehkan
+        $x = explode('.', $gambar); // memisahkan nama file dengan ekstensi
+        $ekstensi = strtolower(end($x));
+        $file_tmp = $_FILES['file']['tmp_name'];
+        move_uploaded_file($file_tmp, 'assets/berkas/' . $gambar);
+    
+        // $query          = "UPDATE tagihan SET pdf = '{$gambar}', status = 2 WHERE id_santri = {$idsantri} AND status = 0";
+
         $berkas = upload();
 
+        
         if (!$berkas) return false;
 
         $return = 0;
@@ -333,7 +346,7 @@ function tambahSantri($data)
         // mysqli_query($koneksi, $query);
         // $return += mysqli_affected_rows($koneksi);
 
-        $query = "INSERT INTO berkas VALUES('',{$idsantri},'{$berkas}')";
+        $query = "INSERT INTO berkas VALUES('',{$idsantri},'{$berkas}', '{$gambar}')";
         mysqli_query($koneksi, $query);
         $return += mysqli_affected_rows($koneksi);
 

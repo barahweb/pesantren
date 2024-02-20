@@ -143,6 +143,7 @@ if ($hasAlertOpened == false) {
 $dataPendaftaran = ambilData("SELECT * FROM tanggal_pendaftaran")[0];
 $dataDaftar = ambilData("SELECT santri.nama FROM pendaftaran join santri on santri.id_santri = pendaftaran.id_santri join wali_santri on wali_santri.id_wali_santri = santri.id_wali_santri where wali_santri.id_wali_santri = {$idwalisantri}") ;
 $dataGagal  = ambilData("SELECT santri.nama FROM pendaftaran join santri on santri.id_santri = pendaftaran.id_santri join wali_santri on wali_santri.id_wali_santri = santri.id_wali_santri where pendaftaran.status = 2 and wali_santri.id_wali_santri = {$idwalisantri} LIMIT 3") ;
+$dataHapus  = ambilData("SELECT santri.nama FROM pendaftaran join santri on santri.id_santri = pendaftaran.id_santri join wali_santri on wali_santri.id_wali_santri = santri.id_wali_santri where pendaftaran.status = 10 and wali_santri.id_wali_santri = {$idwalisantri} LIMIT 3") ;
 ?>
 
 <!-- Main Content -->
@@ -245,7 +246,7 @@ $dataGagal  = ambilData("SELECT santri.nama FROM pendaftaran join santri on sant
             <div class="col-lg-12 col-md-12 col-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Grafik Keuangan Per Tahun</h4>
+                        <h4>Pendaftaran Santri Per Tahun</h4>
                         <div class="card-header-action">
                             <div class="btn-group">
 
@@ -296,7 +297,7 @@ $dataGagal  = ambilData("SELECT santri.nama FROM pendaftaran join santri on sant
                     <div class="alert alert-success alert-has-icon">
                         <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
                         <div class="alert-body">
-                        Selamat! Pendaftaran Santri <?php foreach($data as $santri): ?> <?=$santri['nama']; ?>, <?php endforeach; ?> Diterima, Mohon Nelakukan Pendaftaran Ulang Ke Sekretariat Pondok Pesantren Nurul Iman Dengan membawa Berkas Persyaratan Sebagai Berikut : 
+                        Selamat! Pendaftaran Santri <?php foreach($data as $santri): ?> <?=$santri['nama']; ?>, <?php endforeach; ?> Diterima, Mohon Melakukan Pendaftaran Ulang Ke Sekretariat Pondok Pesantren Nurul Iman Dengan membawa Berkas Persyaratan Sebagai Berikut : 
                         <br> - Fotocopy KTP Calon Santri Sebanyak 2 Lembar (Apabila Sudah Punya)
                         <br> - Fotocopy Akte kelahiran sebanyak 2 lembar
                         <br> - Fotocopy KTP orang tua
@@ -325,6 +326,17 @@ $dataGagal  = ambilData("SELECT santri.nama FROM pendaftaran join santri on sant
                         <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
                         <div class="alert-body">
                             Pendaftaran <?php foreach($dataGagal as $dataGagalSantri): ?> <?=$dataGagalSantri['nama']; ?>, <?php endforeach; ?> ditolak dikarenakan berkas bermasalah, mohon lengkapi berkas kembali untuk melanjutkan pendaftaran
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
+
+                <?php if(COUNT($dataHapus) > 0): ?>
+                <div class="">
+                    <div class="alert alert-danger alert-has-icon">
+                        <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                        <div class="alert-body">
+                            Mohon maaf, <?php foreach($dataHapus as $dataHapusSantri): ?> <?=$dataHapusSantri['nama']; ?>, <?php endforeach; ?> pendaftaran ditolak karena belum melakukan pembayaran/ada masalah dalam melakukan upload berkas
                         </div>
                     </div>
                 </div>

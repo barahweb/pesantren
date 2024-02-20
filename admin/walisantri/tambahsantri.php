@@ -90,6 +90,12 @@ if (isset($_POST['submit'])) {
                                             <input type="file" class="form-control" name="file" id="file" placeholder="Tempat Lahir " />
                                         </div>
                                     </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Upload Foto Kartu Keluarga</label>
+                                            <input type="file" class="form-control" name="fotokk" id="fotokk" placeholder="Foto Kartu Keluarga " />
+                                        </div>
+                                    </div>
 
                                     <div class="col-lg-12">
                                         <div class="form-group">
