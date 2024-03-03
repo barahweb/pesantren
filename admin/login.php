@@ -87,7 +87,7 @@ if (isset($_POST['email'])) {
                                                 <p>Email / Password Salah.</p>
                                             </div>
                                         <?php endif; ?>
-                                        <label for="email">Email</label>
+                                        <label for="email">Email/Username</label>
                                         <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
                                         <div class="invalid-feedback">
                                             Please fill in your email

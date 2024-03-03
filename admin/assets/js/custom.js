@@ -33,7 +33,7 @@ jQuery.validator.addMethod("lettersonly", function (value, element) {
 }, "Tidak boleh angka");
 
 $(function() {
- 
+
 
 
     let chart = $("#myChart")

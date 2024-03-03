@@ -120,14 +120,24 @@ if ($sekarang >= $dataPendaftaran['tanggal_mulai'] && $sekarang  <= $dataPendaft
                                                 <td class="text-center"><?= $d['tempat_lahir'] ?></td>
                                                 <td class="text-center"><?= $d['no_hp'] ?></td>
                                                 <td class="text-center">
+                                                    <?php if ($d['nama_berkas']): ?>
                                                     <a href="assets/berkas/<?= $d['nama_berkas'] ?>" terget="_blank">
                                                         <button class="btn btn-info">Lihat Berkas</button>
                                                     </a>
+
+                                                    <?php else: ?>
+                                                        <span class="badge badge-warning">Foto belum di input</span>
+                                                    <?php endif; ?>
                                                 </td>
                                                 <td class="text-center">
+                                                    <?php if ($d['fotokk']): ?>
                                                     <a href="assets/berkas/<?= $d['fotokk'] ?>" terget="_blank">
                                                         <button class="btn btn-info">Lihat Foto KK</button>
                                                     </a>
+
+                                                    <?php else: ?>
+                                                        <span class="badge badge-warning">Foto belum di input</span>
+                                                    <?php endif; ?>
                                                 </td>
 
                                                 <td class="text-center">
