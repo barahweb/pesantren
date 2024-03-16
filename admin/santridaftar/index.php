@@ -99,6 +99,7 @@ if (isset($_POST['submitproses'])) {
                                             <th class="text-center">Tempat Lahir</th>
                                             <th class="text-center">No Hp</th>
                                             <th class="text-center">Berkas</th>
+                                            <th class="text-center">Foto KK</th>
                                             <th class="text-center">Status</th>
                                             <th class="text-center">Action</th>
                                         </tr>
@@ -115,10 +116,26 @@ if (isset($_POST['submitproses'])) {
                                                 <td class="text-center"><?= $d['tanggal_lahir'] ?></td>
                                                 <td class="text-center"><?= $d['tempat_lahir'] ?></td>
                                                 <td class="text-center"><?= $d['no_hp'] ?></td>
+
                                                 <td class="text-center">
-                                                    <a href="assets/berkas/<?= $d['nama_berkas'] ?>">
-                                                        <button class="btn btn-warning">Berkas</button>
+                                                    <?php if ($d['nama_berkas']): ?>
+                                                    <a href="assets/berkas/<?= $d['nama_berkas'] ?>" terget="_blank">
+                                                        <button class="btn btn-info">Lihat Berkas</button>
                                                     </a>
+
+                                                    <?php else: ?>
+                                                        <span class="badge badge-warning">Foto belum di input</span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td class="text-center">
+                                                    <?php if ($d['fotokk']): ?>
+                                                    <a href="assets/berkas/<?= $d['fotokk'] ?>" terget="_blank">
+                                                        <button class="btn btn-info">Lihat Foto KK</button>
+                                                    </a>
+
+                                                    <?php else: ?>
+                                                        <span class="badge badge-warning">Foto belum di input</span>
+                                                    <?php endif; ?>
                                                 </td>
                                                 <td class="text-center">
                                                     <button class="btn btn-primary" data-id="<?= $d['id_santri'] ?>" onclick="prosesSantri($(this).data('id'))" data-toggle="modal" data-target="#modalProses">Proses</button>
